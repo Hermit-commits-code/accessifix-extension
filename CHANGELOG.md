@@ -54,6 +54,15 @@ Every release, no matter how small, will be properly documented and tagged.
 - Type-safe test suite for rule engine and rules
 - Linting and CI/CD ready for automation
 
+## [0.2.1] - Storage System Enhancements
+
+### Added
+
+- Local storage wrapper with error handling
+- Settings schema validation (TypeScript + Zod)
+- Per-site configuration structure
+- Import/export functionality base for settings
+
 ## [0.1.0] - Initial project setup
 
 ### Added
@@ -62,5 +71,3 @@ Every release, no matter how small, will be properly documented and tagged.
 - Initial manifest.json and extension scaffolding
 - Development tooling (TypeScript, Webpack, ESLint, Prettier, Jest)
 - Professional README, CHANGELOG, LICENSE, CONTRIBUTING, CODE_OF_CONDUCT
-
-4. Create signed commit with conventional commit message

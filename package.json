@@ -1,6 +1,6 @@
 {
   "name": "accessifix-extension",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Professional accessibility extension that automatically fixes web accessibility issues using rule-based, deterministic logic",
   "keywords": [
     "accessibility",
@@ -88,7 +88,8 @@
     "webpack-cli": "^5.1.0"
   },
   "dependencies": {
-    "webextension-polyfill": "^0.10.0"
+    "webextension-polyfill": "^0.10.0",
+    "zod": "^4.1.11"
   },
   "browserslist": [
     "last 2 Chrome versions",
