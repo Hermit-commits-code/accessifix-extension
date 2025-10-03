@@ -9,15 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial project structure and development environment setup
-- Professional documentation framework (README, CHANGELOG, ROADMAP)
-- Comprehensive package.json with all development scripts and dependencies
-- WebExtensions manifest.json with proper permissions and configuration
-- Development tooling setup (ESLint, Prettier, Jest, Webpack)
-
 ### Fixed
-
-- Installed missing ESLint plugin: @typescript-eslint/eslint-plugin for linting TypeScript files
 
 ### Changed
 
@@ -29,37 +21,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
----
-
 ## Release Notes Format
 
 Each version will include:
 
-- **Added**: New features and capabilities
-- **Changed**: Modifications to existing functionality
-- **Deprecated**: Features marked for removal in future versions
-- **Removed**: Features that have been removed
-- **Fixed**: Bug fixes and issue resolutions
-- **Security**: Security-related improvements and fixes
-
 ## Version Numbering
-
-- **MAJOR** version: Incompatible API changes or major feature overhauls
-- **MINOR** version: New functionality added in backward-compatible manner
-- **PATCH** version: Backward-compatible bug fixes and minor improvements
 
 Examples:
 
-- `1.0.0` → `1.0.1`: Bug fix release
-- `1.0.1` → `1.1.0`: New feature release
-- `1.1.0` → `2.0.0`: Breaking change release
-
 ## Development Version Tags
-
-- `0.x.x`: Pre-release versions during initial development
-- `x.x.x-alpha.x`: Alpha releases for early testing
-- `x.x.x-beta.x`: Beta releases for broader testing
-- `x.x.x-rc.x`: Release candidates before stable release
 
 ## Release Process
 
@@ -73,3 +43,24 @@ Examples:
 8. Publish to extension stores (Firefox Add-ons, Chrome Web Store)
 
 Every release, no matter how small, will be properly documented and tagged.
+
+## [0.2.0] - Rule Engine Foundation
+
+### Added
+
+- Modular, extensible rule engine architecture
+- Robust ARIA, contrast, navigation, and typography rules (WCAG/ARIA standards)
+- Professional documentation and inline comments
+- Type-safe test suite for rule engine and rules
+- Linting and CI/CD ready for automation
+
+## [0.1.0] - Initial project setup
+
+### Added
+
+- Project structure, documentation, and CI/CD pipeline
+- Initial manifest.json and extension scaffolding
+- Development tooling (TypeScript, Webpack, ESLint, Prettier, Jest)
+- Professional README, CHANGELOG, LICENSE, CONTRIBUTING, CODE_OF_CONDUCT
+
+4. Create signed commit with conventional commit message
