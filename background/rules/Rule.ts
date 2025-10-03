@@ -8,7 +8,10 @@ export interface Rule {
    *
    * eslint-disable-next-line @typescript-eslint/no-unused-vars
    */
-  check(context: Document | HTMLElement): RuleResult[];
+  check(
+    context: Document | HTMLElement,
+    getRatioFn?: (foreground: string, background: string) => number
+  ): RuleResult[];
   /**
    * Optional fix method. 'context' may be unused in some implementations.
    *

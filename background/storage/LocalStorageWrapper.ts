@@ -1,80 +1,109 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/**
- * LocalStorageWrapper - Robust async wrapper for browser local storage with error handling.
- * Used for extension settings, per-site configs, and import/export base.
- */
+import { defaultErrorHandler, ErrorHandler } from './ErrorHandler';
+import { defaultSerializer, Serializer } from './Serializer';
 
 export type StorageKey = string;
 export type StorageValue = unknown;
-/**
- * Handles storage errors in a centralized way (can be replaced with logging service).
- */
-// eslint-disable-next-line no-unused-vars
-function handleStorageError(context: string, err: unknown): void {
-  // TODO: Integrate with extension logging/reporting system
-  // For now, suppress or optionally log to a debug channel
-  // Uncomment for development:
-  // if (process.env.NODE_ENV === 'development') {
-  //   console.warn(`[Storage] ${context}:`, err);
-  // }
+
+export interface IStorage {
+  // eslint-disable-next-line no-unused-vars
+  getItem(key: string): string | null;
+  // eslint-disable-next-line no-unused-vars
+  setItem(key: string, value: string): void;
+  // eslint-disable-next-line no-unused-vars
+  removeItem(key: string): void;
 }
 
+/**
+ * LocalStorageWrapper - Robust, injectable wrapper for browser/local storage.
+ * Supports dependency injection for error handling and serialization.
+ * Provides async API for get/set/remove operations with error handling and custom serialization.
+ * Usage:
+ *   - Set custom storage, error handler, or serializer via static setters.
+ *   - Defaults to window.localStorage, defaultErrorHandler, and defaultSerializer.
+ */
 export class LocalStorageWrapper {
-  /**
-   * Get a value from local storage.
-   * @param key Storage key
-   * @returns Promise resolving to value or null
-   */
-  static async get(key: StorageKey): Promise<StorageValue | null> {
+  private static storage: IStorage | null = null;
+  private static errorHandler: ErrorHandler = defaultErrorHandler;
+  private static serializer: Serializer = defaultSerializer;
+
+  static setStorage(storage: IStorage) {
+    LocalStorageWrapper.storage = storage;
+  }
+
+  static setErrorHandler(handler: ErrorHandler) {
+    LocalStorageWrapper.errorHandler = handler;
+  }
+
+  static setSerializer(serializer: Serializer) {
+    LocalStorageWrapper.serializer = serializer;
+  }
+
+  static async get<T = StorageValue>(key: StorageKey): Promise<T | null> {
     try {
-      const value = window.localStorage.getItem(key);
-      return value ? JSON.parse(value) : null;
+      let value: string | null;
+      if (!LocalStorageWrapper.storage) {
+        value = window.localStorage.getItem(key);
+      } else if (LocalStorageWrapper.storage === window.localStorage) {
+        value = window.localStorage.getItem(key);
+      } else {
+        value = LocalStorageWrapper.storage.getItem(key);
+      }
+      return LocalStorageWrapper.serializer.deserialize<T>(value);
     } catch (err) {
-      handleStorageError(`Failed to get key '${key}'`, err);
+      LocalStorageWrapper.errorHandler(`Failed to get key '${key}'`, err);
       return null;
     }
   }
 
-  /**
-   * Set a value in local storage.
-   * @param key Storage key
-   * @param value Value to store
-   * @returns Promise resolving to true if successful
-   */
   static async set(key: StorageKey, value: StorageValue): Promise<boolean> {
     try {
-      window.localStorage.setItem(key, JSON.stringify(value));
+      const serialized = LocalStorageWrapper.serializer.serialize(value);
+      if (!LocalStorageWrapper.storage) {
+        window.localStorage.setItem(key, serialized);
+      } else if (LocalStorageWrapper.storage === window.localStorage) {
+        window.localStorage.setItem(key, serialized);
+      } else {
+        LocalStorageWrapper.storage.setItem(key, serialized);
+      }
       return true;
     } catch (err) {
-      handleStorageError(`Failed to set key '${key}'`, err);
+      LocalStorageWrapper.errorHandler(`Failed to set key '${key}'`, err);
       return false;
     }
   }
 
-  /**
-   * Remove a key from local storage.
-   * @param key Storage key
-   * @returns Promise resolving to true if successful
-   */
   static async remove(key: StorageKey): Promise<boolean> {
     try {
-      window.localStorage.removeItem(key);
+      if (!LocalStorageWrapper.storage) {
+        window.localStorage.removeItem(key);
+      } else if (LocalStorageWrapper.storage === window.localStorage) {
+        window.localStorage.removeItem(key);
+      } else {
+        LocalStorageWrapper.storage.removeItem(key);
+      }
       return true;
     } catch (err) {
-      handleStorageError(`Failed to remove key '${key}'`, err);
+      LocalStorageWrapper.errorHandler(`Failed to remove key '${key}'`, err);
       return false;
     }
   }
 
-  /**
-   * Get all keys in local storage.
-   * @returns Promise resolving to array of keys
-   */
   static async keys(): Promise<string[]> {
     try {
-      return Object.keys(window.localStorage);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      let storage: IStorage | any;
+      if (!LocalStorageWrapper.storage) {
+        storage = window.localStorage;
+      } else if (LocalStorageWrapper.storage === window.localStorage) {
+        storage = window.localStorage;
+      } else {
+        storage = LocalStorageWrapper.storage;
+      }
+      // Only works for real localStorage, not mocks
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return Object.keys(storage as any);
     } catch (err) {
-      handleStorageError('Failed to get keys', err);
+      LocalStorageWrapper.errorHandler('Failed to get keys', err);
       return [];
     }
   }

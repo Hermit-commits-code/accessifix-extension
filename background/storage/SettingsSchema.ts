@@ -34,7 +34,8 @@ export const ExtensionSettingsSchema = z.object({
 });
 
 /**
- * Validate settings object at runtime
+ * Validate settings object at runtime using Zod schema.
+ * Throws if validation fails.
  * @param data unknown object
  * @returns ExtensionSettings if valid, throws if invalid
  */

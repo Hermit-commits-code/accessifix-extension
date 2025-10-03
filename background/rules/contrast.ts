@@ -13,7 +13,7 @@ import { Rule, RuleResult } from './Rule';
 /**
  * Placeholder for WCAG contrast ratio algorithm.
  */
-function getContrastRatio(
+export function getContrastRatio(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   foreground: string,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -28,7 +28,17 @@ export const contrastRule: Rule = {
   id: 'color-contrast',
   description:
     'Ensure text elements meet minimum color contrast requirements (WCAG 1.4.3).',
-  check(context: Document | HTMLElement): RuleResult[] {
+  /**
+   * @param context Document | HTMLElement
+   * @param getRatioFn Optional contrast ratio function for dependency injection (default: getContrastRatio)
+   */
+  check(
+    context: Document | HTMLElement,
+    getRatioFn: (
+      foreground: string,
+      background: string
+    ) => number = getContrastRatio
+  ): RuleResult[] {
     const results: RuleResult[] = [];
     const elements = (
       context instanceof Document ? context.body : context
@@ -37,7 +47,7 @@ export const contrastRule: Rule = {
       const style = window.getComputedStyle(el as Element);
       const color = style.color;
       const background = style.backgroundColor;
-      const ratio = getContrastRatio(color, background);
+      const ratio = getRatioFn(color, background);
       if (ratio < 4.5) {
         results.push({
           ruleId: 'color-contrast',

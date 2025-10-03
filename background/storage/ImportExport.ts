@@ -1,7 +1,11 @@
 import { ExtensionSettings, validateSettings } from './SettingsSchema';
 
 /**
- * ImportExport - Base logic for importing and exporting extension settings/configurations.
+ * ImportExport
+ * ------------
+ * Utility class for importing and exporting extension settings/configurations.
+ * Provides methods to serialize settings to JSON and validate imported settings using Zod schema.
+ * Throws on invalid input to ensure data integrity.
  */
 export class ImportExport {
   /**

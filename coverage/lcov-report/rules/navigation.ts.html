@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -106,27 +106,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Rule, RuleResult } from './Rule';
@@ -139,18 +139,18 @@
  * - Checks for negative tabindex on interactive elements
  * - Severity: warning
  */
-export const <span class="cstat-no" title="statement not covered" >navigationRule: Rule = {</span>
+export const navigationRule: Rule = {
   id: 'keyboard-navigation',
   description:
     'Ensure all interactive elements are accessible via keyboard navigation (WCAG 2.1.1, 2.4.3).',
-<span class="fstat-no" title="function not covered" >  check(</span>context: Document | HTMLElement): RuleResult[] {
-    const results: RuleResult[] = <span class="cstat-no" title="statement not covered" >[];</span>
-    const elements = <span class="cstat-no" title="statement not covered" >(</span>
-      context instanceof Document ? context.body : context
+  check(context: Document | HTMLElement): RuleResult[] {
+    const results: RuleResult[] = [];
+    const elements = (
+      context instanceof Document ? <span class="branch-0 cbranch-no" title="branch not covered" >context.body </span>: context
     ).querySelectorAll('a, button, input, textarea, select, [tabindex]');
-<span class="cstat-no" title="statement not covered" >    elements.forEach(<span class="fstat-no" title="function not covered" >(e</span>l) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if ((el as HTMLElement).tabIndex &lt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >        results.push({</span>
+    elements.forEach((el) =&gt; {
+      if ((el as HTMLElement).tabIndex &lt; 0) {
+        results.push({
           ruleId: 'keyboard-navigation',
           message:
             'Element is not focusable via keyboard navigation. (WCAG 2.1.1)',
@@ -159,7 +159,7 @@ export const <span class="cstat-no" title="statement not covered" >navigationRul
         });
       }
     });
-<span class="cstat-no" title="statement not covered" >    return results;</span>
+    return results;
   },
 };
 &nbsp;</pre></td></tr></table></pre>
@@ -169,7 +169,7 @@ export const <span class="cstat-no" title="statement not covered" >navigationRul
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-03T09:26:38.257Z
+                at 2025-10-03T10:57:03.763Z
             </div>
         <script src="../prettify.js"></script>
         <script>

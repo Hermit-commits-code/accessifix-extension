@@ -36,28 +36,24 @@ AccessiFix is a privacy-first browser extension that automatically scans and fix
 
 ## 🚀 Features
 
-### Core Accessibility Fixes
+### Storage System
 
-| Category                   | Fixes Applied                                                                                                                             | WCAG Level |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| **🎨 Color & Contrast**    | Text contrast enhancement (4.5:1 minimum)<br>Background color adjustments<br>Link visibility improvements<br>Focus indicator enhancements | AA         |
-| **📝 Typography**          | Font size normalization<br>Line height improvements<br>Letter spacing adjustments<br>Readable font family fallbacks                       | AA         |
-| **🏗️ Structure & ARIA**    | Missing label detection and injection<br>Role attribute corrections<br>Landmark identification<br>Form accessibility improvements         | A          |
-| **⌨️ Keyboard Navigation** | Tab order optimization<br>Skip link injection<br>Keyboard trap detection and fixing<br>Custom keyboard shortcuts                          | AA         |
-| **🖼️ Media & Images**      | Alt text generation for images<br>Video caption enhancement<br>Audio description support<br>Decorative image identification               | A          |
+| Component           | Status      | Description                                                 |
+| ------------------- | ----------- | ----------------------------------------------------------- |
+| LocalStorageWrapper | ✅ Complete | Robust wrapper with error handling and dependency injection |
+| SettingsSchema      | ✅ Complete | Zod-based schema validation for extension settings          |
+| PerSiteConfig       | ✅ Complete | Per-site configuration management                           |
+| ImportExport        | ✅ Complete | Import/export settings with validation and error handling   |
+| Storage Tests       | ✅ Complete | High coverage, organized, and maintainable test suite       |
 
-### User Interface
+All storage modules are professionally documented and tested. See `background/storage/` for details.
 
-- **🎛️ Browser Action Popup**: Quick toggle controls and fix statistics
-- **⚙️ Comprehensive Settings**: Rule configuration and intensity adjustments
-- **📊 Fix Reporting**: Detailed accessibility reports and before/after comparisons
-- **🌐 Per-Site Controls**: Site-specific enable/disable and custom rules
-- **♿ Accessibility First**: Extension UI itself is fully accessible
+---
 
-### Performance & Compatibility
+### Core Accessibility Fixes (Next Phase)
 
-- **⚡ Lightweight**: < 20MB memory footprint, < 50ms rule execution time
-- **🔄 Dynamic Content**: Works with SPAs and constantly updating pages
+...existing code...
+
 - **🌍 Universal**: Compatible with 99%+ of websites
 - **📱 Cross-Platform**: Firefox (available), Chrome (coming soon)
 
@@ -76,7 +72,7 @@ AccessiFix is a privacy-first browser extension that automatically scans and fix
 
 2. **Manual Installation** (Development)
    ```bash
-   git clone https://github.com/yourusername/accessifix-extension.git
+   git clone https://github.com/Hermit-commits-code/accessifix-extension.git
    cd accessifix-extension
    npm install
    npm run build:prod

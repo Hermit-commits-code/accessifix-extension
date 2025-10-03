@@ -1,7 +1,11 @@
 import { ExtensionSettings } from './SettingsSchema';
 
 /**
- * PerSiteConfig - Utility for managing per-site settings in extension storage.
+ * PerSiteConfig
+ * -------------
+ * Utility class for managing per-site settings in extension storage.
+ * Provides methods to get, set, and enable/disable site-specific configuration overrides.
+ * Used by extension logic to support granular, site-based accessibility settings.
  */
 export class PerSiteConfig {
   /**
