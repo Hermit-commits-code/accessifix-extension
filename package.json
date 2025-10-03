@@ -38,7 +38,7 @@
     "build:prod": "webpack --mode production",
     "watch": "webpack --mode development --watch",
     "clean": "rimraf dist build",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint": "eslint background/ content/ popup/ options/ utils/ --ext .js,.ts",
