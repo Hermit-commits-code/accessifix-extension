@@ -26,7 +26,7 @@ AccessiFix is a privacy-first browser extension that automatically scans and fix
 ### ✨ Key Differentiators
 
 - **🔧 Real DOM Fixes**: Modifies actual webpage content, not overlays or popups
-- **🎯 Rule-Based Logic**: Deterministic, standards-based fixes without AI unpredictability  
+- **🎯 Rule-Based Logic**: Deterministic, standards-based fixes without AI unpredictability
 - **🔒 Privacy-First**: Entirely client-side processing, no data collection
 - **⚙️ Granular Control**: Per-site and per-rule configuration flexibility
 - **⚡ Real-Time**: Immediate fixes as you browse, not after-the-fact reporting
@@ -38,18 +38,18 @@ AccessiFix is a privacy-first browser extension that automatically scans and fix
 
 ### Core Accessibility Fixes
 
-| Category | Fixes Applied | WCAG Level |
-|----------|---------------|------------|
-| **🎨 Color & Contrast** | Text contrast enhancement (4.5:1 minimum)<br>Background color adjustments<br>Link visibility improvements<br>Focus indicator enhancements | AA |
-| **📝 Typography** | Font size normalization<br>Line height improvements<br>Letter spacing adjustments<br>Readable font family fallbacks | AA |
-| **🏗️ Structure & ARIA** | Missing label detection and injection<br>Role attribute corrections<br>Landmark identification<br>Form accessibility improvements | A |
-| **⌨️ Keyboard Navigation** | Tab order optimization<br>Skip link injection<br>Keyboard trap detection and fixing<br>Custom keyboard shortcuts | AA |
-| **🖼️ Media & Images** | Alt text generation for images<br>Video caption enhancement<br>Audio description support<br>Decorative image identification | A |
+| Category                   | Fixes Applied                                                                                                                             | WCAG Level |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **🎨 Color & Contrast**    | Text contrast enhancement (4.5:1 minimum)<br>Background color adjustments<br>Link visibility improvements<br>Focus indicator enhancements | AA         |
+| **📝 Typography**          | Font size normalization<br>Line height improvements<br>Letter spacing adjustments<br>Readable font family fallbacks                       | AA         |
+| **🏗️ Structure & ARIA**    | Missing label detection and injection<br>Role attribute corrections<br>Landmark identification<br>Form accessibility improvements         | A          |
+| **⌨️ Keyboard Navigation** | Tab order optimization<br>Skip link injection<br>Keyboard trap detection and fixing<br>Custom keyboard shortcuts                          | AA         |
+| **🖼️ Media & Images**      | Alt text generation for images<br>Video caption enhancement<br>Audio description support<br>Decorative image identification               | A          |
 
 ### User Interface
 
 - **🎛️ Browser Action Popup**: Quick toggle controls and fix statistics
-- **⚙️ Comprehensive Settings**: Rule configuration and intensity adjustments  
+- **⚙️ Comprehensive Settings**: Rule configuration and intensity adjustments
 - **📊 Fix Reporting**: Detailed accessibility reports and before/after comparisons
 - **🌐 Per-Site Controls**: Site-specific enable/disable and custom rules
 - **♿ Accessibility First**: Extension UI itself is fully accessible
@@ -68,6 +68,7 @@ AccessiFix is a privacy-first browser extension that automatically scans and fix
 ### Firefox (Available Now)
 
 1. **Firefox Add-ons Store** (Recommended)
+
    ```
    Visit: https://addons.mozilla.org/firefox/addon/accessifix/
    Click "Add to Firefox"
@@ -100,17 +101,24 @@ Chrome Web Store release planned for v1.1.0. [Track progress →](./ROADMAP.md#p
 ### Example: Before & After
 
 **Before AccessiFix:**
+
 ```html
 <!-- Poor contrast, missing labels -->
 <button style="color: #ccc; background: #ddd;">Submit</button>
-<input type="email" placeholder="Email">
+<input type="email" placeholder="Email" />
 ```
 
 **After AccessiFix:**
+
 ```html
 <!-- Enhanced contrast, proper labels -->
-<button style="color: #000; background: #fff; border: 2px solid #000;" aria-label="Submit form">Submit</button>
-<input type="email" placeholder="Email" aria-label="Email address" required>
+<button
+  style="color: #000; background: #fff; border: 2px solid #000;"
+  aria-label="Submit form"
+>
+  Submit
+</button>
+<input type="email" placeholder="Email" aria-label="Email address" required />
 ```
 
 ---
@@ -119,13 +127,13 @@ Chrome Web Store release planned for v1.1.0. [Track progress →](./ROADMAP.md#p
 
 ### Settings Categories
 
-| Setting | Description | Default |
-|---------|-------------|---------|
-| **Contrast Enhancement** | Minimum contrast ratio (3:1 to 7:1) | 4.5:1 |
-| **Font Size Scaling** | Minimum font size multiplier | 1.2x |
-| **ARIA Injection** | Add missing labels and roles | Enabled |
-| **Keyboard Navigation** | Enhance focus and tab order | Enabled |
-| **Per-Site Rules** | Site-specific overrides | As configured |
+| Setting                  | Description                         | Default       |
+| ------------------------ | ----------------------------------- | ------------- |
+| **Contrast Enhancement** | Minimum contrast ratio (3:1 to 7:1) | 4.5:1         |
+| **Font Size Scaling**    | Minimum font size multiplier        | 1.2x          |
+| **ARIA Injection**       | Add missing labels and roles        | Enabled       |
+| **Keyboard Navigation**  | Enhance focus and tab order         | Enabled       |
+| **Per-Site Rules**       | Site-specific overrides             | As configured |
 
 ### Advanced Configuration
 
@@ -148,7 +156,7 @@ Chrome Web Store release planned for v1.1.0. [Track progress →](./ROADMAP.md#p
 ### Prerequisites
 
 - **Node.js**: 18.0.0 or higher
-- **npm**: 8.0.0 or higher  
+- **npm**: 8.0.0 or higher
 - **Firefox Developer Edition**: For testing
 - **Git**: For version control
 
@@ -174,13 +182,13 @@ npm run build:prod
 
 ### Development Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run build` | Build production version |
-| `npm run watch` | Development build with file watching |
-| `npm test` | Run full test suite |
-| `npm run lint` | Check code quality |
-| `npm run format` | Format code with Prettier |
+| Command               | Description                                 |
+| --------------------- | ------------------------------------------- |
+| `npm run build`       | Build production version                    |
+| `npm run watch`       | Development build with file watching        |
+| `npm test`            | Run full test suite                         |
+| `npm run lint`        | Check code quality                          |
+| `npm run format`      | Format code with Prettier                   |
 | `npm run dev:firefox` | Load extension in Firefox Developer Edition |
 
 ### Project Structure
@@ -205,7 +213,7 @@ accessifix-extension/
 ### Code Quality Standards
 
 - **Test Coverage**: Minimum 90% coverage required
-- **ESLint**: Zero lint errors or warnings  
+- **ESLint**: Zero lint errors or warnings
 - **Prettier**: Consistent code formatting
 - **Conventional Commits**: All commits follow standard format
 - **Signed Commits**: All commits are GPG signed
@@ -262,14 +270,14 @@ We welcome contributions from the accessibility community! Please see our [Contr
 
 ## 📚 Documentation
 
-| Document | Description |
-|----------|-------------|
-| [🗺️ Roadmap](./ROADMAP.md) | Complete development roadmap and future plans |
-| [📝 Changelog](./CHANGELOG.md) | Detailed version history and release notes |
-| [🤝 Contributing](./CONTRIBUTING.md) | Guidelines for contributors |
-| [📖 API Reference](./docs/api.md) | Developer API documentation |
-| [🔧 Architecture](./docs/architecture.md) | Technical architecture overview |
-| [🎯 User Guide](./docs/user-guide.md) | Complete user documentation |
+| Document                                  | Description                                   |
+| ----------------------------------------- | --------------------------------------------- |
+| [🗺️ Roadmap](./ROADMAP.md)                | Complete development roadmap and future plans |
+| [📝 Changelog](./CHANGELOG.md)            | Detailed version history and release notes    |
+| [🤝 Contributing](./CONTRIBUTING.md)      | Guidelines for contributors                   |
+| [📖 API Reference](./docs/api.md)         | Developer API documentation                   |
+| [🔧 Architecture](./docs/architecture.md) | Technical architecture overview               |
+| [🎯 User Guide](./docs/user-guide.md)     | Complete user documentation                   |
 
 ---
 
@@ -279,13 +287,13 @@ We welcome contributions from the accessibility community! Please see our [Contr
 
 ### Upcoming Releases
 
-| Version | Timeline | Features |
-|---------|----------|----------|
-| **v0.5.0** | Week 4 | Core accessibility rules engine |
-| **v0.7.0** | Week 6 | Complete UI and settings |
-| **v1.0.0** | Week 12 | Public release on Firefox Add-ons |
-| **v1.1.0** | Month 2 | Chrome extension support |
-| **v1.3.0** | Month 3 | Premium features and cloud sync |
+| Version    | Timeline | Features                          |
+| ---------- | -------- | --------------------------------- |
+| **v0.5.0** | Week 4   | Core accessibility rules engine   |
+| **v0.7.0** | Week 6   | Complete UI and settings          |
+| **v1.0.0** | Week 12  | Public release on Firefox Add-ons |
+| **v1.1.0** | Month 2  | Chrome extension support          |
+| **v1.3.0** | Month 3  | Premium features and cloud sync   |
 
 [View Complete Roadmap →](./ROADMAP.md)
 
@@ -293,12 +301,12 @@ We welcome contributions from the accessibility community! Please see our [Contr
 
 ## 📊 Browser Compatibility
 
-| Browser | Status | Version Support |
-|---------|--------|-----------------|
-| **🦊 Firefox** | ✅ Supported | 109.0+ |
-| **🌐 Chrome** | 🔄 Coming Soon | 88.0+ (v1.1.0) |
-| **🔷 Edge** | 🔄 Planned | Chromium-based (v1.2.0) |
-| **🧭 Safari** | 📋 Under Review | TBD |
+| Browser        | Status          | Version Support         |
+| -------------- | --------------- | ----------------------- |
+| **🦊 Firefox** | ✅ Supported    | 109.0+                  |
+| **🌐 Chrome**  | 🔄 Coming Soon  | 88.0+ (v1.1.0)          |
+| **🔷 Edge**    | 🔄 Planned      | Chromium-based (v1.2.0) |
+| **🧭 Safari**  | 📋 Under Review | TBD                     |
 
 ---
 
@@ -342,6 +350,6 @@ MIT License - Copyright (c) 2025 AccessiFix Team
 
 **⭐ Star this repository if AccessiFix helps make the web more accessible! ⭐**
 
-*Building a more accessible web, one website at a time.*
+_Building a more accessible web, one website at a time._
 
 </div>

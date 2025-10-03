@@ -13,14 +13,17 @@ This project and everyone participating in it is governed by our [Code of Conduc
 ## 🚀 Ways to Contribute
 
 ### 1. 🐛 Bug Reports
+
 Found a bug? Help us fix it!
 
 **Before submitting:**
+
 - Search existing issues to avoid duplicates
 - Test on the latest version
 - Check if it's reproducible across different websites
 
 **When submitting:**
+
 - Use the bug report template
 - Include browser version and extension version
 - Provide steps to reproduce
@@ -28,29 +31,35 @@ Found a bug? Help us fix it!
 - Mention specific websites where the issue occurs
 
 ### 2. 💡 Feature Requests
+
 Have an idea for a new accessibility fix or feature?
 
 **Before submitting:**
+
 - Check our [roadmap](./ROADMAP.md) to see if it's already planned
 - Search existing feature requests
 - Consider the WCAG compliance aspect
 
 **When submitting:**
+
 - Use the feature request template
 - Explain the accessibility problem it solves
 - Provide examples of affected websites
 - Reference relevant WCAG guidelines
 
 ### 3. 🔧 Code Contributions
+
 Ready to dive into the code?
 
 **Good first issues:**
+
 - Look for issues labeled `good-first-issue`
 - Documentation improvements
 - Test coverage expansion
 - Simple rule implementations
 
 **Development areas:**
+
 - Accessibility rule development
 - Performance optimizations
 - UI/UX improvements
@@ -58,6 +67,7 @@ Ready to dive into the code?
 - Testing and quality assurance
 
 ### 4. 📚 Documentation
+
 Help improve our documentation!
 
 - User guides and tutorials
@@ -66,6 +76,7 @@ Help improve our documentation!
 - Translation and localization
 
 ### 5. 🧪 Testing
+
 Help ensure AccessiFix works perfectly!
 
 - Test on different websites
@@ -77,6 +88,7 @@ Help ensure AccessiFix works perfectly!
 ## 🛠️ Development Setup
 
 ### Prerequisites
+
 - Node.js 18.0.0 or higher
 - npm 8.0.0 or higher
 - Firefox Developer Edition (for testing)
@@ -85,12 +97,14 @@ Help ensure AccessiFix works perfectly!
 ### Getting Started
 
 1. **Fork and Clone**
+
    ```bash
    git clone https://github.com/yourusername/accessifix-extension.git
    cd accessifix-extension
    ```
 
 2. **Install Dependencies**
+
    ```bash
    npm install
    ```
@@ -205,12 +219,12 @@ describe('ContrastRule', () => {
   test('should enhance low contrast text', () => {
     const element = createTestElement({
       color: '#ccc',
-      backgroundColor: '#ddd'
+      backgroundColor: '#ddd',
     });
-    
+
     const rule = new ContrastRule();
     rule.apply(element);
-    
+
     const ratio = getContrastRatio(element);
     expect(ratio).toBeGreaterThanOrEqual(4.5);
   });
@@ -249,6 +263,7 @@ type(scope): description
 ```
 
 **Types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -258,6 +273,7 @@ type(scope): description
 - `chore`: Maintenance tasks
 
 **Examples:**
+
 ```
 feat(rules): add ARIA label injection for buttons
 fix(contrast): improve color detection algorithm
@@ -276,12 +292,15 @@ test(scanner): add DOM traversal performance tests
 ## 🏷️ Release Process
 
 ### Version Numbers
+
 We follow [Semantic Versioning](https://semver.org/):
+
 - **MAJOR** (1.0.0): Breaking changes or major feature overhauls
 - **MINOR** (0.1.0): New features in backward-compatible manner
 - **PATCH** (0.0.1): Backward-compatible bug fixes
 
 ### Release Timeline
+
 - **Patch releases**: As needed for critical bug fixes
 - **Minor releases**: Every 2-3 weeks during active development
 - **Major releases**: Quarterly or for significant architecture changes
@@ -298,12 +317,14 @@ Contributors are recognized in several ways:
 ## 💬 Communication
 
 ### Channels
+
 - **GitHub Issues**: Bug reports and feature requests
 - **GitHub Discussions**: General questions and ideas
 - **Discord**: Real-time chat for development coordination
 - **Email**: [contributors@accessifix.tools](mailto:contributors@accessifix.tools)
 
 ### Community Guidelines
+
 - Be respectful and inclusive
 - Focus on accessibility impact
 - Provide constructive feedback
@@ -313,12 +334,14 @@ Contributors are recognized in several ways:
 ## 📚 Resources
 
 ### Accessibility Resources
+
 - [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 - [WebAIM Color Contrast Checker](https://webaim.org/resources/contrastchecker/)
 - [A11y Project](https://www.a11yproject.com/)
 - [MDN Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
 
 ### Development Resources
+
 - [WebExtensions API](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions)
 - [Jest Testing Framework](https://jestjs.io/)
 - [ESLint Rules](https://eslint.org/docs/rules/)

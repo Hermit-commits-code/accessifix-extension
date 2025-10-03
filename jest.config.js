@@ -1,7 +1,13 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  roots: ['<rootDir>/background', '<rootDir>/content', '<rootDir>/popup', '<rootDir>/options', '<rootDir>/utils'],
+  roots: [
+    '<rootDir>/background',
+    '<rootDir>/content',
+    '<rootDir>/popup',
+    '<rootDir>/options',
+    '<rootDir>/utils',
+  ],
   collectCoverage: true,
   coverageDirectory: 'coverage',
   collectCoverageFrom: [
@@ -11,14 +17,14 @@ module.exports = {
     'options/**/*.ts',
     'utils/**/*.ts',
     '!**/*.test.ts',
-    '!**/test/**'
+    '!**/test/**',
   ],
   coverageThreshold: {
     global: {
       branches: 90,
       functions: 90,
       lines: 90,
-      statements: 90
-    }
-  }
+      statements: 90,
+    },
+  },
 };

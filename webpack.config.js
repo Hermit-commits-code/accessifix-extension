@@ -6,31 +6,31 @@ module.exports = {
     background: './background/background.ts',
     popup: './popup/popup.ts',
     options: './options/options.ts',
-    content: './content/content-main.ts'
+    content: './content/content-main.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
   },
   module: {
     rules: [
       {
         test: /\.ts$/,
         use: 'ts-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.html$/,
-        use: 'html-loader'
-      }
-    ]
+        use: 'html-loader',
+      },
+    ],
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
 };
