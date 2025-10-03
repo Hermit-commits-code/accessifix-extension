@@ -44,7 +44,7 @@
     "lint": "eslint background/ content/ popup/ options/ utils/ --ext .js,.ts",
     "lint:fix": "eslint src/ --ext .js,.ts --fix",
     "format": "prettier --write \"**/*.{js,ts,json,md,css,html}\"",
-    "format:check": "prettier --check \"**/*.{js,ts,json,md,css,html}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,json,md,css,html}\" --ignore-path .prettierignore",
     "validate": "npm run lint && npm run format:check && npm run test",
     "version:patch": "npm version patch && npm run changelog",
     "version:minor": "npm version minor && npm run changelog",
