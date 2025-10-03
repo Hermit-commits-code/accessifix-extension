@@ -41,13 +41,13 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "lint": "eslint src/ --ext .js,.ts",
+    "lint": "eslint background/ content/ popup/ options/ utils/ --ext .js,.ts",
     "lint:fix": "eslint src/ --ext .js,.ts --fix",
     "format": "prettier --write \"**/*.{js,ts,json,md,css,html}\"",
     "format:check": "prettier --check \"**/*.{js,ts,json,md,css,html}\"",
     "validate": "npm run lint && npm run format:check && npm run test",
     "version:patch": "npm version patch && npm run changelog",
-    "version:minor": "npm version minor && npm run changelog", 
+    "version:minor": "npm version minor && npm run changelog",
     "version:major": "npm version major && npm run changelog",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "release:patch": "npm run validate && npm run version:patch && npm run build:prod",
@@ -65,6 +65,7 @@
     "@types/chrome": "^0.0.246",
     "@types/jest": "^29.5.0",
     "@types/webextension-polyfill": "^0.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
     "babel-loader": "^9.1.0",
     "conventional-changelog-cli": "^4.1.0",
     "copy-webpack-plugin": "^11.0.0",
@@ -94,7 +95,9 @@
   ],
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": ["jest-webextension-mock"],
+    "setupFilesAfterEnv": [
+      "jest-webextension-mock"
+    ],
     "coverageDirectory": "coverage",
     "collectCoverageFrom": [
       "src/**/*.{js,ts}",
@@ -115,7 +118,9 @@
       "eslint:recommended",
       "prettier"
     ],
-    "plugins": ["prettier"],
+    "plugins": [
+      "prettier"
+    ],
     "env": {
       "browser": true,
       "es2022": true,

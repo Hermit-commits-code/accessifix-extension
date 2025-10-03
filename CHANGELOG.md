@@ -8,11 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Initial project structure and development environment setup
 - Professional documentation framework (README, CHANGELOG, ROADMAP)
 - Comprehensive package.json with all development scripts and dependencies
 - WebExtensions manifest.json with proper permissions and configuration
 - Development tooling setup (ESLint, Prettier, Jest, Webpack)
+
+### Fixed
+
+- Installed missing ESLint plugin: @typescript-eslint/eslint-plugin for linting TypeScript files
 
 ### Changed
 
@@ -29,8 +34,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Release Notes Format
 
 Each version will include:
+
 - **Added**: New features and capabilities
-- **Changed**: Modifications to existing functionality  
+- **Changed**: Modifications to existing functionality
 - **Deprecated**: Features marked for removal in future versions
 - **Removed**: Features that have been removed
 - **Fixed**: Bug fixes and issue resolutions
@@ -43,8 +49,9 @@ Each version will include:
 - **PATCH** version: Backward-compatible bug fixes and minor improvements
 
 Examples:
+
 - `1.0.0` → `1.0.1`: Bug fix release
-- `1.0.1` → `1.1.0`: New feature release  
+- `1.0.1` → `1.1.0`: New feature release
 - `1.1.0` → `2.0.0`: Breaking change release
 
 ## Development Version Tags
