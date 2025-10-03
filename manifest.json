@@ -1,0 +1,83 @@
+{
+  "manifest_version": 3,
+  "name": "AccessiFix - Accessibility Fixer",
+  "version": "0.1.0",
+  "description": "Automatically fix accessibility issues on web pages using rule-based, deterministic logic. Improve contrast, font sizes, ARIA labels, and keyboard navigation for a more accessible web.",
+  
+  "author": "AccessiFix Team",
+  "homepage_url": "https://github.com/yourusername/accessifix-extension",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  
+  "background": {
+    "service_worker": "background/background.js",
+    "type": "module"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "utils/dom-utils.js",
+        "utils/wcag.js",
+        "content/scanner.js",
+        "content/applier.js",
+        "content/observer.js",
+        "content/content-main.js"
+      ],
+      "css": ["content/accessibility-fixes.css"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "AccessiFix",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "content/accessibility-fixes.css",
+        "assets/skip-link-styles.css"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  
+  "minimum_chrome_version": "88",
+  
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "accessifix@accessibility.tools",
+      "strict_min_version": "109.0"
+    }
+  }
+}
