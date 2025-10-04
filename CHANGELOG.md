@@ -9,15 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Extensibility: dynamic plugin and rule registration API in DOMScanner
+- Per-site and per-rule configuration support for rule engine
+
 ### Changed
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
+- Developer documentation updated for extensibility and configuration features
 
 ## [0.3.0] - DOMScanner Performance & Integration
 

@@ -9,6 +9,14 @@ export interface DOMScanOptions {
   root?: HTMLElement | Document;
   includeHidden?: boolean;
   rules?: string[]; // List of rule IDs to apply
+  config?: DOMScannerConfig;
+}
+
+export interface DOMScannerConfig {
+  enabledRules?: string[];
+  disabledRules?: string[];
+  ruleOptions?: Record<string, unknown>;
+  site?: string;
 }
 
 export interface AccessibilityIssue {
@@ -21,12 +29,22 @@ export interface AccessibilityIssue {
 
 import { getAllElements } from './utils';
 // eslint-disable-next-line no-unused-vars
-type RuleCheckFn = (el: HTMLElement) => AccessibilityIssue | null;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type RuleCheckFn = (
+  el: HTMLElement,
+  options?: unknown
+) => AccessibilityIssue | null;
+interface RuleMeta {
+  checkFn: RuleCheckFn;
+  selector?: string;
+}
 
 /**
  * Internal registry for rule check functions
  */
-const ruleRegistry: Record<string, RuleCheckFn> = {};
+const ruleRegistry: Record<string, RuleMeta> = {};
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const pluginRegistry: Record<string, (scanner: typeof DOMScanner) => void> = {};
 
 export class DOMScanner {
   /**
@@ -37,26 +55,51 @@ export class DOMScanner {
   static scan(options: DOMScanOptions): AccessibilityIssue[] {
     const root = options.root || document;
     const issues: AccessibilityIssue[] = [];
-    const rulesToApply = options.rules || Object.keys(ruleRegistry);
-
-    // Traverse all elements, including shadow DOM and iframes
-    const elements = getAllElements(root);
-    for (const el of elements) {
-      // Optionally skip hidden elements
-      if (
-        !options.includeHidden &&
-        el instanceof HTMLElement &&
-        el.offsetParent === null
-      ) {
-        continue;
+    let rulesToApply = options.rules || Object.keys(ruleRegistry);
+    // Deep clone config for browser context serialization
+    const config = options.config
+      ? JSON.parse(JSON.stringify(options.config))
+      : undefined;
+    // Apply config filtering
+    if (config) {
+      if (config.enabledRules) {
+        rulesToApply = rulesToApply.filter((r) =>
+          config.enabledRules!.includes(r)
+        );
       }
-      // Apply each rule
-      for (const ruleId of rulesToApply) {
-        const checkFn = ruleRegistry[ruleId];
-        if (checkFn) {
-          const issue = checkFn(el as HTMLElement);
-          if (issue) issues.push(issue);
+      if (config.disabledRules) {
+        rulesToApply = rulesToApply.filter(
+          (r) => !config.disabledRules!.includes(r)
+        );
+      }
+    }
+    for (const ruleId of rulesToApply) {
+      const ruleMeta = ruleRegistry[ruleId];
+      if (!ruleMeta) continue;
+      let elements: HTMLElement[] = [];
+      if (ruleMeta.selector) {
+        // Use querySelectorAll for targeted elements
+        elements = Array.from(
+          (root instanceof Document ? root.body : root).querySelectorAll(
+            ruleMeta.selector
+          )
+        );
+      } else {
+        // Fallback to all elements
+        elements = getAllElements(root);
+      }
+      for (const el of elements) {
+        if (
+          !options.includeHidden &&
+          el instanceof HTMLElement &&
+          el.offsetParent === null
+        ) {
+          continue;
         }
+        // Always pass an object for ruleOptions
+        const ruleOptions = config?.ruleOptions?.[ruleId] ?? {};
+        const issue = ruleMeta.checkFn(el, ruleOptions);
+        if (issue) issues.push(issue);
       }
     }
     return issues;
@@ -77,9 +120,17 @@ export class DOMScanner {
     callback: (_issues: AccessibilityIssue[]) => void
   ): MutationObserver {
     const root = options.root || document;
+    let debounceTimer: number | null = null;
+    const DEBOUNCE_MS = 100;
     const observer = new MutationObserver(() => {
-      const issues = DOMScanner.scan(options);
-      callback(issues);
+      if (debounceTimer !== null) {
+        clearTimeout(debounceTimer);
+      }
+      debounceTimer = window.setTimeout(() => {
+        const issues = DOMScanner.scan(options);
+        callback(issues);
+        debounceTimer = null;
+      }, DEBOUNCE_MS);
     });
     observer.observe(root instanceof Document ? root.body : root, {
       childList: true,
@@ -94,8 +145,28 @@ export class DOMScanner {
   /**
    * Placeholder for future plugin/rule registration
    */
-  static registerRule(ruleId: string, checkFn: RuleCheckFn) {
-    ruleRegistry[ruleId] = checkFn;
+  static registerRule(ruleId: string, checkFn: RuleCheckFn, selector?: string) {
+    ruleRegistry[ruleId] = { checkFn, selector };
+  }
+
+  /**
+   * Register a plugin that can add rules or extend scanner functionality
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static registerPlugin(
+    pluginId: string,
+    pluginFn: (scanner: typeof DOMScanner) => void
+  ) {
+    pluginRegistry[pluginId] = pluginFn;
+  }
+
+  /**
+   * Load a plugin by id
+   */
+  static loadPlugin(pluginId: string) {
+    if (pluginRegistry[pluginId]) {
+      pluginRegistry[pluginId](DOMScanner);
+    }
   }
 
   /**
@@ -118,7 +189,7 @@ export class DOMScanner {
         if (!role || role === '') {
           return {
             type: 'tab-navigation',
-            message: 'Element is focusable but lacks ARIA role',
+            message: 'Element is focusable but has no ARIA role',
             node: el,
             ruleId: 'keyboard-navigation',
             severity: 'info',
@@ -231,72 +302,84 @@ export class DOMScanner {
     });
 
     // Label presence for inputs
-    DOMScanner.registerRule('input-label', (el) => {
-      if (
-        el.tagName === 'INPUT' &&
-        !el.hasAttribute('aria-label') &&
-        !el.hasAttribute('aria-labelledby')
-      ) {
-        // Check for associated <label>
-        const id = el.getAttribute('id');
-        if (id) {
-          const label = document.querySelector(`label[for="${id}"]`);
-          if (label) return null;
-        }
-        return {
-          type: 'missing-label',
-          message: 'Input element missing label or ARIA label',
-          node: el,
-          ruleId: 'input-label',
-          severity: 'warning',
-        };
-      }
-      return null;
-    });
-
-    // ARIA role check
-    DOMScanner.registerRule('aria-role', (el) => {
-      if (el instanceof HTMLElement && el.hasAttribute('role')) {
-        const role = el.getAttribute('role');
-        // Example: flag unknown roles
-        const knownRoles = [
-          'button',
-          'navigation',
-          'main',
-          'form',
-          'dialog',
-          'banner',
-          'contentinfo',
-          'complementary',
-        ];
-        if (role && !knownRoles.includes(role)) {
+    DOMScanner.registerRule(
+      'input-label',
+      (el) => {
+        if (
+          el.tagName === 'INPUT' &&
+          !el.hasAttribute('aria-label') &&
+          !el.hasAttribute('aria-labelledby')
+        ) {
+          // Check for associated <label>
+          const id = el.getAttribute('id');
+          if (id) {
+            const label = document.querySelector(`label[for="${id}"]`);
+            if (label) return null;
+          }
           return {
-            type: 'unknown-aria-role',
-            message: `Unknown ARIA role: ${role}`,
+            type: 'missing-label',
+            message: 'Input element missing label or ARIA label',
             node: el,
-            ruleId: 'aria-role',
-            severity: 'info',
-          };
-        }
-      }
-      return null;
-    });
-
-    // Form field detection
-    DOMScanner.registerRule('form-field', (el) => {
-      if (el.tagName === 'FORM') {
-        const inputs = el.querySelectorAll('input, select, textarea');
-        if (inputs.length === 0) {
-          return {
-            type: 'empty-form',
-            message: 'Form has no input fields',
-            node: el,
-            ruleId: 'form-field',
+            ruleId: 'input-label',
             severity: 'warning',
           };
         }
-      }
-      return null;
-    });
+        return null;
+      },
+      'input'
+    );
+
+    // ARIA role check
+    DOMScanner.registerRule(
+      'aria-role',
+      (el) => {
+        if (el instanceof HTMLElement && el.hasAttribute('role')) {
+          const role = el.getAttribute('role');
+          // Example: flag unknown roles
+          const knownRoles = [
+            'button',
+            'navigation',
+            'main',
+            'form',
+            'dialog',
+            'banner',
+            'contentinfo',
+            'complementary',
+          ];
+          if (role && !knownRoles.includes(role)) {
+            return {
+              type: 'unknown-aria-role',
+              message: `Unknown ARIA role: ${role}`,
+              node: el,
+              ruleId: 'aria-role',
+              severity: 'info',
+            };
+          }
+        }
+        return null;
+      },
+      '[role]'
+    );
+
+    // Form field detection
+    DOMScanner.registerRule(
+      'form-field',
+      (el) => {
+        if (el.tagName === 'FORM') {
+          const inputs = el.querySelectorAll('input, select, textarea');
+          if (inputs.length === 0) {
+            return {
+              type: 'empty-form',
+              message: 'Form has no input fields',
+              node: el,
+              ruleId: 'form-field',
+              severity: 'warning',
+            };
+          }
+        }
+        return null;
+      },
+      'form'
+    );
   }
 }

@@ -1,29 +1,31 @@
-  test('detects accessibility issues on a complex SPA (React TodoMVC)', async ({ page }) => {
-    await page.goto('https://todomvc.com/examples/react/', {
-      timeout: 60000,
-    });
-    await page.addScriptTag({
-      url: 'http://localhost:8081/dist/background.js',
-    });
-    await page.waitForFunction(() => window.DOMScanner !== undefined);
-    await page.evaluate(() => {
-      (
-        window.DOMScanner as unknown as { registerBuiltInRules: () => void }
-      ).registerBuiltInRules();
-    });
-    const issues = await page.evaluate(() =>
-      (
-        window.DOMScanner as unknown as {
-          scan: (_: { root: Document }) => unknown[];
-        }
-      ).scan({ root: document })
-    );
-    expect(Array.isArray(issues)).toBeTruthy();
-    // Log issues for debugging (suppressed for lint)
-    void issues;
-    // Assert that some issues are found (SPA edge case)
-    expect(issues.length).toBeGreaterThan(0);
+test('detects accessibility issues on a complex SPA (React TodoMVC)', async ({
+  page,
+}) => {
+  await page.goto('https://todomvc.com/examples/react/', {
+    timeout: 60000,
   });
+  await page.addScriptTag({
+    url: 'http://localhost:8081/dist/background.js',
+  });
+  await page.waitForFunction(() => window.DOMScanner !== undefined);
+  await page.evaluate(() => {
+    (
+      window.DOMScanner as unknown as { registerBuiltInRules: () => void }
+    ).registerBuiltInRules();
+  });
+  const issues = await page.evaluate(() =>
+    (
+      window.DOMScanner as unknown as {
+        scan: (_: { root: Document }) => unknown[];
+      }
+    ).scan({ root: document })
+  );
+  expect(Array.isArray(issues)).toBeTruthy();
+  // Log issues for debugging (suppressed for lint)
+  void issues;
+  // Assert that some issues are found (SPA edge case)
+  expect(issues.length).toBeGreaterThan(0);
+});
 // TypeScript and lint compliant
 
 declare global {

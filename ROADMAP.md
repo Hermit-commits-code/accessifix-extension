@@ -50,17 +50,17 @@ Build the most comprehensive, professional, and user-friendly accessibility exte
 
 ##### DOM Scanner Mini-Roadmap (Production-Grade)
 
-- [ ] **Coverage & Accuracy**
+- [x] **Coverage & Accuracy**
   - Detect common accessibility issues (contrast, labels, ARIA, navigation, images, forms)
   - Handle edge cases (SPAs, Shadow DOM, iframes)
   - Minimize false positives/negatives
 
-- [ ] **Performance**
-  - Fast scanning (<50ms per page)
-  - Efficient memory usage (<20MB footprint)
-  - No browser lag
+- [x] **Performance**
+  - Fast scanning (<50ms per page) [optimized traversal, targeted queries]
+  - Efficient memory usage (<20MB footprint) [rule filtering, selector-based scan]
+  - No browser lag [debounced MutationObserver]
 
-- [ ] **Reliability**
+- [x] **Reliability**
   - Works on major sites and web apps
   - Handles dynamic content (MutationObserver, route changes)
   - No crashes or hangs
@@ -78,7 +78,7 @@ Build the most comprehensive, professional, and user-friendly accessibility exte
   - No data leaks
   - Secure DOM manipulation
 
-- [ ] **Testing & Documentation**
+- [x] **Testing & Documentation**
   - High test coverage
   - Professional documentation
 

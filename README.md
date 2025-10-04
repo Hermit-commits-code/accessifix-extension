@@ -119,7 +119,62 @@ Chrome Web Store release planned for v1.1.0. [Track progress →](./ROADMAP.md#p
 
 ---
 
-## ⚙️ Configuration
+## ⚙️ Extensibility & Configuration
+
+### Plugin & Rule API
+
+AccessiFix supports dynamic rule and plugin registration for advanced customization and developer extensibility.
+
+#### Registering a Custom Rule
+
+```typescript
+import { DOMScanner } from './background/dom/DOMScanner';
+
+DOMScanner.registerRule(
+  'my-custom-rule',
+  (el, options) => {
+    // Custom logic here
+    if (el.tagName === 'BUTTON' && !el.hasAttribute('aria-label')) {
+      return {
+        type: 'missing-label',
+        message: 'Button missing ARIA label',
+        node: el,
+        ruleId: 'my-custom-rule',
+        severity: 'warning',
+      };
+    }
+    return null;
+  },
+  'button'
+);
+```
+
+#### Registering a Plugin
+
+```typescript
+DOMScanner.registerPlugin('myPlugin', (scanner) => {
+  scanner.registerRule('plugin-rule', (el) => {
+    // Plugin rule logic
+    return null;
+  });
+});
+DOMScanner.loadPlugin('myPlugin');
+```
+
+#### Per-Site and Per-Rule Configuration
+
+```typescript
+const config = {
+  enabledRules: ['contrast', 'aria-label', 'my-custom-rule'],
+  disabledRules: ['form-field'],
+  ruleOptions: {
+    contrast: { minRatio: 4.5 },
+    'my-custom-rule': { customOption: true },
+  },
+  site: 'example.com',
+};
+const issues = DOMScanner.scan({ root: document, config });
+```
 
 ### Settings Categories
 
