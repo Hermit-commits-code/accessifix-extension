@@ -48,11 +48,50 @@ Build the most comprehensive, professional, and user-friendly accessibility exte
 
 #### v0.3.0 - DOM Analysis Engine
 
-- [ ] **DOM Scanner**
-  - Efficient element traversal algorithms
-  - Accessibility issue detection patterns
-  - Performance-optimized queries
-  - Memory leak prevention
+##### DOM Scanner Mini-Roadmap (Production-Grade)
+
+- [ ] **Coverage & Accuracy**
+  - Detect common accessibility issues (contrast, labels, ARIA, navigation, images, forms)
+  - Handle edge cases (SPAs, Shadow DOM, iframes)
+  - Minimize false positives/negatives
+
+- [ ] **Performance**
+  - Fast scanning (<50ms per page)
+  - Efficient memory usage (<20MB footprint)
+  - No browser lag
+
+- [ ] **Reliability**
+  - Works on major sites and web apps
+  - Handles dynamic content (MutationObserver, route changes)
+  - No crashes or hangs
+
+- [ ] **Extensibility**
+  - Easy rule/plugin addition
+  - Configurable per-site/per-rule
+
+- [ ] **User Experience**
+  - Clear, actionable feedback
+  - Seamless browser UI integration
+  - Accessible extension UI
+
+- [ ] **Security & Privacy**
+  - No data leaks
+  - Secure DOM manipulation
+
+- [ ] **Testing & Documentation**
+  - High test coverage
+  - Professional documentation
+
+- [ ] **Monetization Readiness**
+  - Premium features (advanced rules, reporting)
+  - Reliable update/licensing system
+
+---
+
+- Efficient element traversal algorithms
+- Accessibility issue detection patterns
+- Performance-optimized queries
+- Memory leak prevention
 - [ ] **Fix Applier**
   - Safe DOM manipulation utilities
   - CSS injection system

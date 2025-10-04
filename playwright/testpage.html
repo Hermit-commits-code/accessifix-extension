@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DOMScanner Playwright Test Page</title>
+  </head>
+  <body>
+    <main>
+      <button tabindex="0">Button</button>
+      <div tabindex="0"></div>
+      <a href="#main" tabindex="0">Skip to main</a>
+      <button tabindex="0" style="outline: none">No Focus</button>
+      <button tabindex="0" style="outline: auto">Has Focus</button>
+      <nav role="navigation"></nav>
+      <main role="main"></main>
+      <div role="foo"></div>
+      <span
+        style="color: rgb(255, 255, 255); background-color: rgb(255, 255, 255)"
+        >Low Contrast</span
+      >
+      <span style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255)"
+        >Good Contrast</span
+      >
+    </main>
+    <script src="/dist/background.js"></script>
+    <script>
+      // Expose DOMScanner globally if available
+      if (window.DOMScanner === undefined && window.background?.DOMScanner) {
+        window.DOMScanner = window.background.DOMScanner;
+      }
+      // Register built-in rules for Playwright integration tests
+      if (
+        window.DOMScanner &&
+        typeof window.DOMScanner.registerBuiltInRules === 'function'
+      ) {
+        window.DOMScanner.registerBuiltInRules();
+      }
+    </script>
+  </body>
+</html>

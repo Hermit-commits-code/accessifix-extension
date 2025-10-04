@@ -1,8 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1759489023779" clover="3.2.0">
-  <project timestamp="1759489023779" name="All files">
-    <metrics statements="123" coveredstatements="116" conditionals="41" coveredconditionals="30" methods="31" coveredmethods="31" elements="195" coveredelements="177" complexity="0" loc="123" ncloc="123" packages="2" files="11" classes="11"/>
-    <package name="rules">
+<coverage generated="1759556307398" clover="3.2.0">
+  <project timestamp="1759556307399" name="All files">
+    <metrics statements="231" coveredstatements="147" conditionals="108" coveredconditionals="39" methods="46" coveredmethods="35" elements="385" coveredelements="221" complexity="0" loc="231" ncloc="231" packages="4" files="14" classes="14"/>
+    <package name="background">
+      <metrics statements="3" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="background.ts" path="/home/hermit/Desktop/accessifix-extension/background/background.ts">
+        <metrics statements="3" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="12" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="background.dom">
+      <metrics statements="105" coveredstatements="31" conditionals="66" coveredconditionals="9" methods="15" coveredmethods="4"/>
+      <file name="DOMScanner.ts" path="/home/hermit/Desktop/accessifix-extension/background/dom/DOMScanner.ts">
+        <metrics statements="89" coveredstatements="20" conditionals="60" coveredconditionals="7" methods="14" coveredmethods="3"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="38" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="39" count="9" type="stmt"/>
+        <line num="40" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="43" count="9" type="stmt"/>
+        <line num="44" count="9" type="stmt"/>
+        <line num="46" count="23" type="cond" truecount="1" falsecount="0"/>
+        <line num="51" count="23" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="56" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="58" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="62" count="9" type="stmt"/>
+        <line num="79" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="84" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="98" count="9" type="stmt"/>
+        <line num="106" count="1" type="stmt"/>
+        <line num="107" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="113" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
+        <line num="118" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="119" count="0" type="stmt"/>
+        <line num="128" count="0" type="stmt"/>
+        <line num="132" count="1" type="stmt"/>
+        <line num="133" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="140" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="141" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="142" count="0" type="stmt"/>
+        <line num="151" count="0" type="stmt"/>
+        <line num="155" count="1" type="stmt"/>
+        <line num="156" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="157" count="0" type="stmt"/>
+        <line num="158" count="0" type="stmt"/>
+        <line num="166" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="167" count="0" type="stmt"/>
+        <line num="176" count="0" type="stmt"/>
+        <line num="180" count="1" type="stmt"/>
+        <line num="183" count="0" type="stmt"/>
+        <line num="184" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="185" count="0" type="stmt"/>
+        <line num="186" count="0" type="stmt"/>
+        <line num="187" count="0" type="stmt"/>
+        <line num="189" count="0" type="stmt"/>
+        <line num="191" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="193" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="195" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="198" count="0" type="stmt"/>
+        <line num="199" count="0" type="stmt"/>
+        <line num="201" count="0" type="stmt"/>
+        <line num="202" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="203" count="0" type="stmt"/>
+        <line num="212" count="0" type="stmt"/>
+        <line num="215" count="1" type="stmt"/>
+        <line num="216" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="217" count="0" type="stmt"/>
+        <line num="218" count="0" type="stmt"/>
+        <line num="220" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="221" count="0" type="stmt"/>
+        <line num="230" count="0" type="stmt"/>
+        <line num="234" count="1" type="stmt"/>
+        <line num="235" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="241" count="0" type="stmt"/>
+        <line num="242" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="243" count="0" type="stmt"/>
+        <line num="244" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="246" count="0" type="stmt"/>
+        <line num="254" count="0" type="stmt"/>
+        <line num="258" count="1" type="stmt"/>
+        <line num="259" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="260" count="0" type="stmt"/>
+        <line num="262" count="0" type="stmt"/>
+        <line num="272" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="273" count="0" type="stmt"/>
+        <line num="282" count="0" type="stmt"/>
+        <line num="286" count="1" type="stmt"/>
+        <line num="287" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="288" count="0" type="stmt"/>
+        <line num="289" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="290" count="0" type="stmt"/>
+        <line num="299" count="0" type="stmt"/>
+      </file>
+      <file name="utils.ts" path="/home/hermit/Desktop/accessifix-extension/background/dom/utils.ts">
+        <metrics statements="16" coveredstatements="11" conditionals="6" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="9" type="stmt"/>
+        <line num="6" count="9" type="stmt"/>
+        <line num="10" count="9" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="12" count="23" type="cond" truecount="1" falsecount="0"/>
+        <line num="13" count="23" type="stmt"/>
+        <line num="15" count="23" type="cond" truecount="0" falsecount="1"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="23" count="23" type="cond" truecount="0" falsecount="1"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="35" count="23" type="stmt"/>
+        <line num="37" count="9" type="stmt"/>
+      </file>
+    </package>
+    <package name="background.rules">
       <metrics statements="55" coveredstatements="55" conditionals="24" coveredconditionals="18" methods="15" coveredmethods="15"/>
       <file name="RuleEngine.ts" path="/home/hermit/Desktop/accessifix-extension/background/rules/RuleEngine.ts">
         <metrics statements="14" coveredstatements="14" conditionals="3" coveredconditionals="2" methods="4" coveredmethods="4"/>
@@ -75,7 +198,7 @@
         <line num="31" count="2" type="stmt"/>
       </file>
     </package>
-    <package name="storage">
+    <package name="background.storage">
       <metrics statements="68" coveredstatements="61" conditionals="17" coveredconditionals="12" methods="16" coveredmethods="16"/>
       <file name="ErrorHandler.ts" path="/home/hermit/Desktop/accessifix-extension/background/storage/ErrorHandler.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
