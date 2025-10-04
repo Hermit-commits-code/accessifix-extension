@@ -65,9 +65,9 @@ Build the most comprehensive, professional, and user-friendly accessibility exte
   - Handles dynamic content (MutationObserver, route changes)
   - No crashes or hangs
 
-- [ ] **Extensibility**
-  - Easy rule/plugin addition
-  - Configurable per-site/per-rule
+- [x] **Extensibility**
+  - Easy rule/plugin addition (dynamic registration, plugin API)
+  - Configurable per-site/per-rule (config object, ruleOptions)
 
 - [ ] **User Experience**
   - Clear, actionable feedback

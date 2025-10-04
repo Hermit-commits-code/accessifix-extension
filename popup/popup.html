@@ -6,11 +6,53 @@
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <div class="accessifix-popup">
-      <h1>AccessiFix</h1>
-      <button id="toggle-extension">Enable/Disable</button>
-      <div id="fix-stats">Fixes applied: 0</div>
-      <a href="../options/options.html" target="_blank">Settings</a>
+    <div
+      class="accessifix-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="popup-title"
+    >
+      <h1 id="popup-title">AccessiFix</h1>
+      <button
+        id="toggle-extension"
+        aria-pressed="false"
+        aria-label="Enable or disable AccessiFix extension"
+      >
+        Enable/Disable
+      </button>
+      <div id="fix-stats" aria-live="polite">Fixes applied: 0</div>
+      <div
+        id="feedback-panel"
+        aria-live="polite"
+        tabindex="0"
+        role="status"
+        style="margin-top: 12px; outline: none"
+      >
+        <strong>Accessibility Issues:</strong>
+        <ul
+          id="issue-list"
+          style="
+            margin: 8px 0 0 0;
+            padding-left: 18px;
+            font-size: 0.95em;
+            color: #b20000;
+          "
+        >
+          <li>No issues detected.</li>
+        </ul>
+      </div>
+      <a
+        href="../options/options.html"
+        target="_blank"
+        aria-label="Open AccessiFix settings in a new tab"
+        >Settings</a
+      >
+      <div style="margin-top: 16px; font-size: 0.9em; color: #444">
+        <span aria-hidden="true"
+          >Tip: Use <kbd>Tab</kbd> to navigate, <kbd>Enter</kbd> to activate
+          buttons.</span
+        >
+      </div>
     </div>
     <script src="popup.js"></script>
   </body>

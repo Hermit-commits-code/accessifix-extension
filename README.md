@@ -11,7 +11,6 @@
 [![Firefox](https://img.shields.io/badge/Firefox-Compatible-orange.svg)](https://addons.mozilla.org/firefox/)
 [![Chrome](https://img.shields.io/badge/Chrome-Coming%20Soon-red.svg)](#roadmap)
 [![Build Status](https://img.shields.io/github/workflow/status/yourusername/accessifix-extension/CI)](https://github.com/yourusername/accessifix-extension/actions)
-[![Coverage](https://img.shields.io/codecov/c/github/yourusername/accessifix-extension)](https://codecov.io/gh/yourusername/accessifix-extension)
 
 [📦 Install](#installation) • [🚀 Features](#features) • [📖 Documentation](./docs/) • [🛠️ Development](#development) • [🤝 Contributing](#contributing)
 
@@ -58,6 +57,10 @@ All storage modules are professionally documented and tested. See `background/st
 - **📱 Cross-Platform**: Firefox (available), Chrome (coming soon)
 
 ---
+
+### Manual Testing
+
+User experience, accessibility, and UI improvements are now validated manually in Chrome and Firefox. Automated Playwright tests have been removed for simplicity. For regression and CI/CD, re-add Playwright if needed.
 
 ## 📦 Installation
 

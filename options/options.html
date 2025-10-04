@@ -6,26 +6,55 @@
     <link rel="stylesheet" href="options.css" />
   </head>
   <body>
-    <div class="accessifix-options">
-      <h1>AccessiFix Settings</h1>
-      <form id="settings-form">
-        <label>
-          <input type="checkbox" id="contrast-enhancement" checked />
+    <div class="accessifix-options" role="main" aria-labelledby="options-title">
+      <h1 id="options-title">AccessiFix Settings</h1>
+      <form id="settings-form" aria-describedby="settings-desc">
+        <div
+          id="settings-desc"
+          style="font-size: 0.95em; color: #444; margin-bottom: 10px"
+        >
+          Configure which accessibility features are enabled. Use
+          <kbd>Tab</kbd> to navigate, <kbd>Space</kbd> to toggle.
+        </div>
+        <label for="contrast-enhancement">
+          <input
+            type="checkbox"
+            id="contrast-enhancement"
+            checked
+            aria-checked="true"
+          />
           Enable Contrast Enhancement </label
         ><br />
-        <label>
-          <input type="checkbox" id="font-size-scaling" checked />
+        <label for="font-size-scaling">
+          <input
+            type="checkbox"
+            id="font-size-scaling"
+            checked
+            aria-checked="true"
+          />
           Enable Font Size Scaling </label
         ><br />
-        <label>
-          <input type="checkbox" id="aria-injection" checked />
+        <label for="aria-injection">
+          <input
+            type="checkbox"
+            id="aria-injection"
+            checked
+            aria-checked="true"
+          />
           Enable ARIA Injection </label
         ><br />
-        <label>
-          <input type="checkbox" id="keyboard-navigation" checked />
+        <label for="keyboard-navigation">
+          <input
+            type="checkbox"
+            id="keyboard-navigation"
+            checked
+            aria-checked="true"
+          />
           Enable Keyboard Navigation </label
         ><br />
-        <button type="submit">Save Settings</button>
+        <button type="submit" aria-label="Save accessibility settings">
+          Save Settings
+        </button>
       </form>
     </div>
     <script src="options.js"></script>

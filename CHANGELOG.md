@@ -11,10 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Extensibility: dynamic plugin and rule registration API in DOMScanner
 - Per-site and per-rule configuration support for rule engine
+- User experience improvements: actionable feedback, browser UI integration, accessible popup and options pages
 
 ### Changed
 
 - Developer documentation updated for extensibility and configuration features
+- Playwright integration tests removed; user experience features now validated manually in Chrome and Firefox
 
 ## [0.3.0] - DOMScanner Performance & Integration
 
