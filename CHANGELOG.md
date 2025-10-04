@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-### Fixed
-
 ### Changed
 
 ### Deprecated
@@ -20,6 +18,61 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Security
+
+## [0.3.0] - DOMScanner Performance & Integration
+
+### Added
+
+- DOMScanner performance optimizations: selector-based traversal, rule filtering, debounced MutationObserver scans
+- Expanded Playwright integration tests for DOMScanner (SPA, dynamic, real-world scenarios)
+
+### Changed
+
+- DOMScanner.scan now uses targeted queries for rules, reducing memory and CPU usage
+- MutationObserver in DOMScanner.observeAndScan is debounced to batch DOM changes
+
+## [0.2.3] - Minor improvements
+
+### Added
+
+- Finalized DOMScanner integration with robust Playwright tests
+- Documented jsdom limitations in unit tests
+
+## [0.2.2] - Minor improvements
+
+### Added
+
+- Finalized storage system implementation, documentation, and tests
+
+## [0.2.1] - Storage System Enhancements
+
+## [0.2.0] - Rule Engine Foundation
+
+## [0.1.4] - Minor improvements
+
+### Fixed
+
+- Cleaned up CI workflow and prepared for proper release
+
+## [0.1.3] - Minor improvements
+
+### Changed
+
+- Prepared for v0.1.2 release and tagging
+
+## [0.1.2] - Minor improvements
+
+### Added
+
+- Installed ts-loader and verified local build success
+
+## [0.1.1] - Minor improvements
+
+### Added
+
+- Installed ts-loader and verified local build success
+
+## [0.1.0] - Initial project setup
 
 ## Release Notes Format
 
